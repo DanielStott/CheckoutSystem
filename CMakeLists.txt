@@ -3,5 +3,5 @@ project(CheckoutSystem)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp Shop.cpp Shop.h)
 add_executable(CheckoutSystem ${SOURCE_FILES})
