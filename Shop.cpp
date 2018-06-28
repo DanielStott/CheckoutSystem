@@ -4,22 +4,22 @@
 
 #include "Shop.h"
 
-//On class initialisation add shop items to available item list
+//On class initialisation add shop items to available item list.
 Shop::Shop(std::vector<item> *shopItems)
 {
     items = shopItems;
 }
 
-//Adds item to shopping cart
+//Adds item to shopping cart.
 bool Shop::AddToCart(char itemToAdd)
 {
-    //Loops over shopping cart
+    //Loops over shopping cart.
     for(cartItem &cItem : shoppingCart)
     {
-        //Checks if item already exists inside shopping cart
+        //Checks if item already exists inside shopping cart.
         if (cItem.code == itemToAdd)
         {
-            //Increases quantity of item
+            //Increases quantity of item.
             cItem.quantity++;
             return true;
         }
@@ -31,34 +31,34 @@ bool Shop::AddToCart(char itemToAdd)
         //Checks that itemToAdd is inside item list.
         if (pItem.code == itemToAdd)
         {
-            //Adds item to shopping cart
+            //Adds item to shopping cart.
             shoppingCart.push_back({itemToAdd, 1});
             return true;
         }
     }
 
-    //Returns false if item does not exist in product list
+    //Returns false if item does not exist in product list.
     return false;
 }
 
-//Calculates the total price of items in the shopping cart
+//Calculates the total price of items in the shopping cart.
 int Shop::CalculateCart()
 {
     unsigned int price = 0;
 
-    //loops through shopping cart
+    //loops through shopping cart.
     for(cartItem &itemInCart : shoppingCart)
     {
-        //loops through product list
+        //loops through product list.
         for (item &productItem : *items)
         {
-            //checks if shopping cart item is equal to product
+            //checks if shopping cart item is equal to product.
             if(itemInCart.code == productItem.code)
             {
-                //checks item in cart has a special price and has required quantity for special price
+                //checks item in cart has a special price and has required quantity for special price.
                 if(productItem.sPrice.quantity != 0 && itemInCart.quantity >= productItem.sPrice.quantity)
                 {
-                    //Calculates total of items in shopping cart
+                    //Calculates total of items in shopping cart.
                     int divisibleBy = itemInCart.quantity / productItem.sPrice.quantity;
                     int remainder = itemInCart.quantity % productItem.sPrice.quantity;
 
@@ -76,7 +76,7 @@ int Shop::CalculateCart()
     return price;
 }
 
-//Lists all available products and returns as string
+//Lists all available products and returns as string.
 void Shop::ListAvailableProducts() {
 
     std::cout << "| ITEM CODE | PRICE | SPECIAL PRICE | \n" ;
